@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container" id="mylist">
+    <h1>Submission Successful!</h1>
+    
+</div>
+
+<script>
+    function submitForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+
+        let name=document.getElementById("name")
+        let mylist =document.getElementById('mylist') 
+        let myform=document.getElementById('myform')
+        let submit=document.getElementById('submit')
+        myform.addEventListener('submit',display)
+        submit.addEventListener('submit',display)
+
+
+    
+    }
+    function display(d){
+        let mytemplate=<p>Thank you, <span id="username">${d}</span>, for your submission.</p>
+        mylist.insertAdjacentHTML('beforend',mytemplate)
+        name.value="";
+        email.value="";
+        message.value="";
+        name.focus();
+
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

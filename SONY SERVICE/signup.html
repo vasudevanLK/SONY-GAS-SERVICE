@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Your existing styles here */
+    </style>
+</head>
+<body>
+    <div id="welcomeMessage" style="display: none;">
+        <!-- Welcome message will be displayed here -->
+    </div>
+
+    <!-- Sign-In Form -->
+    <form id="signInForm" action="/signin" method="post">
+        <h2>Sign In</h2>
+        <label for="signInUsername">Username:</label>
+        <input type="text" id="signInUsername" name="signInUsername" required>
+
+        <label for="signInPassword">Password:</label>
+        <input type="password" id="signInPassword" name="signInPassword" required>
+
+        <button type="submit">Sign In</button>
+    </form>
+
+    <!-- Login Form with Forgot Password Link -->
+    <form id="loginForm" action="/login" method="post" style="display: none;">
+        <h2>Login</h2>
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
+
+    <script>
+        // Sign-In Form
+        document.getElementById("signInForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            handleFormSubmit("signIn");
+        });
+
+        // Login Form
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            handleFormSubmit("login");
+        });
+
+        // Forgot Password Link
+        document.getElementById("forgotPasswordLink").addEventListener("click", function (event) {
+            event.preventDefault();
+            showLoginForm();
+        });
+
+        function handleFormSubmit(formType) {
+            var username, password;
+
+            if (formType === "signIn") {
+                username = document.getElementById("signInUsername").value;
+                password = document.getElementById("signInPassword").value;
+            } else if (formType === "login") {
+                username = document.getElementById("loginUsername").value;
+                password = document.getElementById("loginPassword").value;
+            }
+
+            // Example validation: Check if username and password meet certain criteria
+            if (username.length < 5 || password.length < 5) {
+                alert("Username and password must be at least 5 characters long.");
+                return;
+            }
+
+            // Example submission logic: Send data to the server using AJAX
+            // Replace this with your actual submission logic
+            // In this example, assuming the server returns the user's name after successful authentication
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", "/login", true);
+            // xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.onload = function () {
+            //     if (xhr.status === 200) {
+            //         var response = JSON.parse(xhr.responseText);
+            //         displayWelcomeMessage(response.name);
+            //     }
+            // };
+            // xhr.send(JSON.stringify({ username: username, password: password }));
+
+            // For demonstration purposes, display a welcome message immediately
+            displayWelcomeMessage(username);
+        }
+
+        function displayWelcomeMessage(username) {
+            // Update the welcome message and show it
+            var welcomeMessage = document.getElementById("welcomeMessage");
+            welcomeMessage.innerHTML = "Welcome, " + username + "!";
+            welcomeMessage.style.display = "block";
+        }
+
+        function showLoginForm() {
+            // Hide the sign-in form and show the login form
+            document.getElementById("signInForm").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+        }
+    </script>
+</body>
+</html>
